@@ -14,6 +14,7 @@ buttons.addEventListener("click", handleButtonClick);
 clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", evaluateExpression);
 
+// event handler for button pushes
 function handleButtonClick(event) {
   const button = event.target;
   if (button.classList.contains("number")) {
@@ -23,12 +24,24 @@ function handleButtonClick(event) {
   }
 }
 
+// appends number to display 
 function appendToDisplay(number) {
     display.value += parseFloat(number);
 }
 
-function setOperator() {}
+// sets the operator, places the present display value into currentOperand and then empties the display
+function setOperator(operator) {
+    currentOperator = operator;
+    currentOperand = display.value;
+    display.value = "";
+}
 
-function clearDisplay (event) {}
+/// clears the dsiplay 
+function clearDisplay (event) {
+    display.value = "";
+    currentOperator = null;
+    currentOperand = null;
+}
 
+// does the equation 
 function evaluateExpression (event) {}
