@@ -50,7 +50,7 @@ function evaluateExpression (event) {
         const operand1 = parseFloat(currentOperand);
         const operand2 = parseFloat(display.value);
         let result;
-    }
+    
     // html operators are mapped to their corresponding operations
      const operations = {
        "+": (a, b) => a + b,
@@ -60,7 +60,7 @@ function evaluateExpression (event) {
      };
 
     //selects the correct operation by running the currentOperator against the object of operations and passed the rights values into the equation. 
-    if (currentOperator in operations) {
+        if (currentOperator in operations) {
         result = operations[currentOperator](operand1, operand2);
     }
     // if the above operation is run, and result is now defined, the display value is now set to result and the current operator and operand results are nulled to reset them for any further user inputs
@@ -69,4 +69,5 @@ function evaluateExpression (event) {
         currentOperator = null;
         currentOperand = null;
     }
+}
 }
