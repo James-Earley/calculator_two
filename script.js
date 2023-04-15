@@ -5,8 +5,10 @@ const clearButton = document.getElementById("clear");
 const equalsButton = document.getElementById("equals");
 
 /// the variables 
-let currentOperator = null;
-let currentOperand = null;
+let firstOperator = null;
+let firstOperand = null;
+let secondOperand = null;
+let secondOperator = null;
 
 /// event listeners 
 
@@ -29,25 +31,25 @@ function appendToDisplay(number) {
     display.value += parseFloat(number);
 }
 
-// sets the operator, places the present display value into currentOperand and then empties the display
+// sets the operator, places the present display value into firstOperand and then empties the display
 function setOperator(operator) {
-    currentOperator = operator;
-    currentOperand = display.value;
+    firstOperator = operator;
+    firstOperand = display.value;
     display.value = "";
 }
 
 /// clears the dsiplay 
 function clearDisplay (event) {
     display.value = "";
-    currentOperator = null;
-    currentOperand = null;
+    firstOperator = null;
+    firstOperand = null;
 }
 
 // does the equation 
 function evaluateExpression (event) {
     // checks to see if all equaltion elements are present and then converts strings to numbers and to new variables
-    if (currentOperator && currentOperand && display.value) {
-        const operand1 = parseFloat(currentOperand);
+    if (firstOperator && firstOperand && display.value) {
+        const operand1 = parseFloat(firstOperand);
         const operand2 = parseFloat(display.value);
         let result;
     
@@ -59,15 +61,15 @@ function evaluateExpression (event) {
        "/": (a, b) => a / b,
      };
 
-    //selects the correct operation by running the currentOperator against the object of operations and passed the rights values into the equation. 
-        if (currentOperator in operations) {
-        result = operations[currentOperator](operand1, operand2);
+    //selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation. 
+        if (firstOperator in operations) {
+        result = operations[firstOperator](operand1, operand2);
     }
     // if the above operation is run, and result is now defined, the display value is now set to result and the current operator and operand results are nulled to reset them for any further user inputs
     if (result !== undefined) {
         display.value = result;
-        currentOperator = null;
-        currentOperand = null;
+        firstOperator = null;
+        firstOperand = null;
     }
 }
 }
