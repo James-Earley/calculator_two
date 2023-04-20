@@ -7,14 +7,16 @@ const equalsButton = document.getElementById("equals");
 /// the variables 
 let firstOperator = null;
 let firstOperand = null;
-let secondOperator = null;
-
 
 /// event listeners 
 
 buttons.addEventListener("click", handleButtonClick);
 clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", operate);
+
+// default display values 
+display.value = null;
+
 
 // event handler for button pushes (add operand updaters)
 function handleButtonClick(event) {
@@ -33,9 +35,7 @@ function appendToDisplay(number) {
 
 // sets the operator, places the present display value into firstOperand and then empties the display
 function setOperator(operator) {
-    if (firstOperator !== null) {
-    operate(); 
-    }
+    if (firstOperator !== null) {operate();}
     firstOperator = operator;
     firstOperand = display.value;
     display.value = "";
@@ -60,13 +60,24 @@ function operate () {
     "/": (a, b) => a / b,
   };
 
+  console.log(firstOperator);
+  console.log(firstOperand);
+  console.log(display.value);
+
   // checks to see if all equaltion elements are present and then converts strings to numbers and to new variables
   if (firstOperator && firstOperand && display.value) {
     const operand1 = parseFloat(firstOperand);
     const operand2 = parseFloat(display.value);
 
     //selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation.
-    if (firstOperator in operations) {
+
+    if (operand2 === 0) {
+      display.value = "Pull the other one...";
+      firstOperator = null;
+      firstOperand = null;
+      setTimeout(function() {display.value = ""}, 1000);
+    } else {
+      firstOperator in operations;
       result = operations[firstOperator](operand1, operand2);
     }
     // if the above operation is run, and result is now defined, the display value is now set to result and the current operator and operand results are nulled to reset them for any further user inputs
@@ -76,7 +87,5 @@ function operate () {
       firstOperand = null;
     }
   }
-
-  
   
 }
