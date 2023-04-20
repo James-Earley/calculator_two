@@ -34,8 +34,7 @@ function appendToDisplay(number) {
 // sets the operator, places the present display value into firstOperand and then empties the display
 function setOperator(operator) {
     if (firstOperator !== null) {
-    secondOperator = operator;
-    operate();  
+    operate(); 
     }
     firstOperator = operator;
     firstOperand = display.value;
@@ -47,11 +46,12 @@ function clearDisplay (event) {
     display.value = "";
     firstOperator = null;
     firstOperand = null;
+    secondOperator = null;
 }
 
 // does the equation 
 function operate () {
-   let result;
+  let result;
   // html operators are mapped to their corresponding operations
   const operations = {
     "+": (a, b) => a + b,
@@ -77,25 +77,6 @@ function operate () {
     }
   }
 
-  // check if there is a second operator
-  if (secondOperator !== null) {
-const operand1 = parseFloat(firstOperand);
-const operand2 = parseFloat(display.value);
-
-//selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation.
-if (firstOperator in operations) {
-  result = operations[firstOperator](operand1, operand2);
-}
-// if the above operation is run, and result is now defined, the display value is now set to result and the current operator and operand results are nulled to reset them for any further user inputs
-if (result !== undefined) {
-  display.value = result;
-  firstOperator = null;
-  firstOperand = null;
-}
-  } 
-  // if, so do the first equation
-
-  //update display
-
-  // null the varaibles/ reset
+  
+  
 }
