@@ -16,7 +16,6 @@ const operations = {
 let firstOperator = null;
 let firstOperand = null;
 let result;
-let operationCounter = 0;
 
 /// event listeners 
 
@@ -93,7 +92,6 @@ function operate () {
       display.value = result;
       firstOperator = null;
       firstOperand = null;
-      operationCounter ++;
     }
   }
 }
