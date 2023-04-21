@@ -2,13 +2,21 @@ body {
     background-color: #f2f2f2;
   }
   
+  #declaration {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
   #calculator {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px auto;
-    border: 1px solid black;
+    margin: 120px auto;
+    border: 1px solid rgb(75, 75, 75);
     padding: 20px;
     width: 300px;
     border-radius: 10px;
@@ -17,9 +25,9 @@ body {
   
   #display {
     margin-bottom: 20px;
-    border: 1px solid black;
+    border: 1px solid rgb(75, 75, 75);
     padding: 10px;
-    width: 100%;
+    width: 87%;
     border-radius: 5px;
     background-color: #f2f2f2;
     text-align: right;
@@ -35,7 +43,7 @@ body {
   }
   
   button {
-    border: 1px solid black;
+    border: 1px solid rgb(75, 75, 75);
     padding: 15px;
     margin: 5px;
     width: 60px;
