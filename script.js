@@ -4,9 +4,19 @@ const buttons = document.getElementById("buttons");
 const clearButton = document.getElementById("clear");
 const equalsButton = document.getElementById("equals");
 
+/// Object containing operations 
+const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
+  };
+
 /// the variables 
 let firstOperator = null;
 let firstOperand = null;
+let result;
+let operationCounter = 0;
 
 /// event listeners 
 
@@ -28,9 +38,13 @@ function handleButtonClick(event) {
   }
 }
 
-// appends number to display 
+// appends number to display and checks to see if previous operation has been made and resets display
 function appendToDisplay(number) {
-    display.value += parseFloat(number);
+      if (result !== undefined) {
+        result = undefined;
+        display.value = "";
+      }
+      display.value += parseFloat(number);
 }
 
 // sets the operator, places the present display value into firstOperand and then empties the display
@@ -51,14 +65,6 @@ function clearDisplay (event) {
 
 // does the equation 
 function operate () {
-  let result;
-  // html operators are mapped to their corresponding operations
-  const operations = {
-    "+": (a, b) => a + b,
-    "-": (a, b) => a - b,
-    "*": (a, b) => a * b,
-    "/": (a, b) => a / b,
-  };
 
   console.log(firstOperator);
   console.log(firstOperand);
@@ -69,13 +75,13 @@ function operate () {
     const operand1 = parseFloat(firstOperand);
     const operand2 = parseFloat(display.value);
 
-    //selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation.
+    //checks for /0 and then selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation.
 
     if (operand2 === 0) {
       display.value = "Pull the other one...";
       firstOperator = null;
       firstOperand = null;
-      setTimeout(function() {display.value = ""}, 1000);
+      setTimeout(function () {display.value = "";}, 1000);
     } else {
       firstOperator in operations;
       result = operations[firstOperator](operand1, operand2);
@@ -85,7 +91,7 @@ function operate () {
       display.value = result;
       firstOperator = null;
       firstOperand = null;
+      operationCounter ++;
     }
   }
-  
 }
