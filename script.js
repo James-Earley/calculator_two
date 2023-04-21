@@ -25,7 +25,7 @@ clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", operate);
 
 // default display values 
-display.value = null;
+display.value = 0;
 
 
 // event handler for button pushes (add operand updaters)
@@ -43,8 +43,10 @@ function appendToDisplay(number) {
       if (result !== undefined) {
         result = undefined;
         display.value = "";
-      }
-      display.value += parseFloat(number);
+      } if (result === undefined && display.value === "0") {
+        display.value = number;
+      } else {
+      display.value += parseFloat(number)}
 }
 
 // sets the operator, places the present display value into firstOperand and then empties the display
@@ -77,7 +79,7 @@ function operate () {
 
     //checks for /0 and then selects the correct operation by running the firstOperator against the object of operations and passed the rights values into the equation.
 
-    if (operand2 === 0) {
+    if (operand2 === 0 && firstOperator === "/") {
       display.value = "Pull the other one...";
       firstOperator = null;
       firstOperand = null;
